@@ -16,16 +16,17 @@
     <script type="text/javascript">
       var users = [];
 
-    	$(document).ready(function(){
-    		var Utilisateur = function (nom, prenom, sexe, description) {
-          this.nom = nom;
-          this.prenom = prenom;
-          this.sexe = sexe;
-          this.description = description;
-          this.decrire = function() {
-            console.log(`Je suis ${this.prenom} ${this.nom} (${this.sexe}). ${this.description}`);
-          }
+      var Utilisateur = function (nom, prenom, sexe, description) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.sexe = sexe;
+        this.description = description;
+        this.decrire = function() {
+          console.log(`Je suis ${this.prenom} ${this.nom} (${this.sexe}). ${this.description}`);
         }
+      }
+
+    	$(document).ready(function(){
 
         $('#cool-form').submit(function(e) {
           e.preventDefault();

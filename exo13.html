@@ -15,9 +15,10 @@
     <script src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
-    		$('p')
-          .hover(function() { $(this).css("font-weight", "bold") })
-          .mouseleave(function() { $(this).css("font-weight", "normal") });
+    		$('p').hover(
+          function() { $(this).css("font-weight", "bold") },
+          function() { $(this).css("font-weight", "normal") }
+        );
 
         $(window).resize(function() {
           console.log(`${$(this).width()} x ${$(this).height()}`);
