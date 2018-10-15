@@ -1,9 +1,9 @@
 <!-- KIT DE SURVIE JS - IUT INFORMATIQUE BORDEAUX -->
 <!DOCTYPE html>
 <head>
- 
+
     <meta charset="utf-8" />
- 
+
     <title>Exercice 05</title>
     <meta name="description" content="Description de la page">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -15,7 +15,14 @@
     <script src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
-    		// Ecrire les scripts ici
+    		 var nbLinks = $('a').length;
+         console.log(`Nombre de liens : ${nbLinks}`);
+         var nbParagraphes = $('p.paragraphe').length;
+         console.log(`Nombre de paragraphes : ${nbParagraphes}`);
+         var nbNotTextInput = $('input[type!="text"]').length;
+         console.log(`Nombre d'input non texte : ${nbNotTextInput}`);
+         var nbBigLists = $('ul li:nth-child(3)').length;
+         console.log(`Nombre de listes avec + de 2 éléments : ${nbBigLists}`);
     	});
    	</script>
 </head>
@@ -78,5 +85,5 @@
 
 
 </body>
- 
+
 </html>

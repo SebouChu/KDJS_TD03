@@ -1,0 +1,6 @@
+1. Récupérer tous les noeuds de texte dans les listes <ul>
+2. Récupérer tous les noeuds HTML et leurs noeuds de texte dans les listes <ul>
+3. Attribue un noeud de texte dans tous les paragraphes
+4. Attribue un noeud de lien dans tous les paragraphes
+5. N'affiche rien car un input texte ne comporte pas de noeud de texte
+6. Affiche la valeur dans l'input de nom

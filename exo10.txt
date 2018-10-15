@@ -1,0 +1,5 @@
+1. Ajoute à la suite des noeuds HTML et texte contenus dans tous les paragraphes le paramètre passé.
+2. Ajoute au dessus des noeuds HTML et texte contenus dans tous les paragraphes le paramètre passé.
+3. Supprime tous les paragraphes
+4. Ajoute un noeud texte "Before" avant chaque liste <ul>
+5. Ajoute un noeud texte "After" après chaque liste <ul>

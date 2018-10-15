@@ -1,9 +1,9 @@
 <!-- KIT DE SURVIE JS - IUT INFORMATIQUE BORDEAUX -->
 <!DOCTYPE html>
 <head>
- 
+
     <meta charset="utf-8" />
- 
+
     <title>Exercice 14</title>
     <meta name="description" content="Description de la page">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -14,13 +14,59 @@
 
     <script src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
+      var users = [];
+
     	$(document).ready(function(){
-    		// Ecrire les scripts ici
+    		var Utilisateur = function (nom, prenom, sexe, description) {
+          this.nom = nom;
+          this.prenom = prenom;
+          this.sexe = sexe;
+          this.description = description;
+          this.decrire = function() {
+            console.log(`Je suis ${this.prenom} ${this.nom} (${this.sexe}). ${this.description}`);
+          }
+        }
+
+        $('#cool-form').submit(function(e) {
+          e.preventDefault();
+          var user = new Utilisateur(
+            $("input#nom").val(),
+            $("input#prenom").val(),
+            $("select#sexe").val(),
+            $("textarea#description").val()
+          );
+          users.push(user);
+          user.decrire();
+        })
+
     	});
    	</script>
 </head>
 <body>
-	<!-- Formulaire ici -->
+	<form id="cool-form">
+    <p>
+      <label for="nom">Nom : </label><br>
+      <input type="text" name="nom" id="nom">
+    </p>
+    <p>
+      <label for="prenom">Prénom : </label><br>
+      <input type="text" name="prenom" id="prenom">
+    </p>
+    <p>
+      <label for="sexe">Sexe : </label><br>
+      <select name="sexe" id="sexe">
+        <option value="M">Homme</option>
+        <option value="F">Femme</option>
+      </select>
+    </p>
+    <p>
+      <label for="description">Description : </label><br>
+      <textarea name="description" id="description"></textarea>
+    </p>
+    <p>
+      <input type="submit" value="Valider">
+    </p>
+  </form>
 </body>
- 
+
 </html>

@@ -1,9 +1,9 @@
 <!-- KIT DE SURVIE JS - IUT INFORMATIQUE BORDEAUX -->
 <!DOCTYPE html>
 <head>
- 
+
     <meta charset="utf-8" />
- 
+
     <title>Exercice 13</title>
     <meta name="description" content="Description de la page">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -15,7 +15,17 @@
     <script src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
-    		// Ecrire les scripts ici
+    		$('p')
+          .hover(function() { $(this).css("font-weight", "bold") })
+          .mouseleave(function() { $(this).css("font-weight", "normal") });
+
+        $(window).resize(function() {
+          console.log(`${$(this).width()} x ${$(this).height()}`);
+        });
+
+        $(document).keypress(function(e) {
+          console.log(e.key);
+        });
     	});
    	</script>
 </head>
@@ -78,5 +88,5 @@
 
 
 </body>
- 
+
 </html>

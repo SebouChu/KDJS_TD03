@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <head>
- 
+
     <meta charset="utf-8" />
- 
+
     <title>Titre de la page</title>
     <meta name="description" content="Description de la page">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -10,7 +10,57 @@
     <script src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
+        $("form").submit(function(e) {
+          e.preventDefault();
+          console.log(e);
+          var eltType = $("select#type").val();
+          var newElt = null;
+          if (eltType.search(":") != -1) {
+            var parts = eltType.split(":");
+            newElt = $(document.createElement(parts[0]));
+            newElt.attr("type", parts[1]);
+          } else {
+            newElt = $(document.createElement(eltType));
+          }
 
+          var contenu = $("input#contenu").val();
+
+          switch (eltType) {
+            case "img":
+              newElt.attr("src", contenu);
+              break;
+            case "a":
+              newElt.attr("href", contenu);
+              newElt.text("Lien");
+              break;
+            case "input:text":
+              newElt.attr("placeholder", contenu);
+              break;
+            case "input:submit":
+              newElt.attr("value", contenu);
+              break;
+            default:
+              newElt.text(contenu);
+          }
+
+          if ($("div#recipient").children().length == 0) {
+            $("div#recipient").html("");
+          }
+
+          if ($("input:checkbox").is(":checked")) {
+            $("div#recipient").prepend(newElt);
+          } else {
+            $("div#recipient").append(newElt);
+          }
+        });
+
+        $("input:button").click(function() {
+          if ($(this).val() == "Réinitialiser") {
+            $("div#recipient").html("La page est vide pour l'instant...");
+          } else {
+            alert($("div#recipient").html());
+          }
+        });
     	});
    	</script>
 </head>
@@ -86,5 +136,5 @@
 		}
 	</style>
 </body>
- 
+
 </html>

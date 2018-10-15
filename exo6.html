@@ -1,9 +1,9 @@
 <!-- KIT DE SURVIE JS - IUT INFORMATIQUE BORDEAUX -->
 <!DOCTYPE html>
 <head>
- 
+
     <meta charset="utf-8" />
- 
+
     <title>Exercice 06</title>
     <meta name="description" content="Description de la page">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -15,7 +15,9 @@
     <script src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
-    		// Ecrire les scripts ici
+        $('li:first-child').css({color: "red"});
+        $('div > p:first-of-type, div > p:last-of-type').css({color: "blue"});
+        $('ul img').css({border: "1px solid red"});
     	});
    	</script>
 </head>
@@ -78,5 +80,5 @@
 
 
 </body>
- 
+
 </html>

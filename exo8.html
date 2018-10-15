@@ -1,21 +1,33 @@
 <!-- KIT DE SURVIE JS - IUT INFORMATIQUE BORDEAUX -->
 <!DOCTYPE html>
 <head>
- 
+
     <meta charset="utf-8" />
- 
+
     <title>Exercice 08</title>
     <meta name="description" content="Description de la page">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 
     <style>
     	body{ font-family: 'Quicksand', sans-serif; }
+      .orange { color: orange; }
+      .violet { color: purple; }
+      .gras { font-weight: bold; }
+      .italique { font-style: italic; }
 	</style>
 
     <script src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
-    		// Ecrire les scripts ici
+    		$("li:first-child").addClass("orange");
+        $("li:last-child").addClass("violet");
+        $("h1, h2, h3, h4, h5, h6").addClass("italique");
+        $("p").addClass("gras");
+
+        $("li:first-child").addClass("violet");
+        // $("li:first-child").removeClass("violet"); // Pour remettre en orange
+        $("h1").addClass("violet").addClass("orange");
+        // La classe .orange est définie avant .violet dans la balise <style>, c'est donc .violet qui prend le dessus
     	});
    	</script>
 </head>
@@ -78,5 +90,5 @@
 
 
 </body>
- 
+
 </html>
