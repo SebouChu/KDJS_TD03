@@ -51,6 +51,14 @@
           handle: ".handle",
         });
 
+        $("#orderBtn").click(function() {
+          var i = 1;
+          $("ul li .order").each(function() {
+            $(this).text(i);
+            i++;
+          });
+        });
+
       });
     </script>
   </head>
@@ -62,13 +70,15 @@
     <hr>
     <p>Liste de courses :</p>
     <ul>
-      <li><span class="handle">☰</span> Spaghettis</li>
-      <li><span class="handle">☰</span> Crème fraîche</li>
-      <li><span class="handle">☰</span> Lardons</li>
-      <li><span class="handle">☰</span> Moutarde</li>
-      <li><span class="handle">☰</span> Emmental rapé</li>
-      <li><span class="handle">☰</span> Oeufs</li>
-      <li><span class="handle">☰</span> Poivre</li>
+      <li><span class="handle">☰</span> <span class="order">1</span> - Spaghettis</li>
+      <li><span class="handle">☰</span> <span class="order">2</span> - Crème fraîche</li>
+      <li><span class="handle">☰</span> <span class="order">3</span> - Lardons</li>
+      <li><span class="handle">☰</span> <span class="order">4</span> - Moutarde</li>
+      <li><span class="handle">☰</span> <span class="order">5</span> - Emmental rapé</li>
+      <li><span class="handle">☰</span> <span class="order">6</span> - Oeufs</li>
+      <li><span class="handle">☰</span> <span class="order">7</span> - Poivre</li>
     </ul>
+
+    <button id="orderBtn">Update</button>
   </body>
 </html>
