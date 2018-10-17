@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>KDJS TD n°3</title>
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.theme.min.css">
+    <style>
+      .container {
+        border: 1px solid black;
+        width: 500px;
+        height: 400px;
+      }
+
+      .element {
+        background-color: red;
+        width: 100px;
+        height: 75px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .handle:hover {
+        cursor: move;
+      }
+    </style>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="jquery-ui/jquery-ui.min.js"></script>
+    <script>
+
+      $(document).ready(function() {
+        var xPos = $("#xPos");
+        var yPos = $("#yPos");
+
+        var smallDiv = $(".element");
+        smallDiv.draggable({
+          containment: "parent",
+          drag: function(e, ui) {
+            xPos.text(ui.position.left);
+            yPos.text(ui.position.top);
+          }
+        });
+
+        $("ul").sortable({
+          cursor: "move",
+          axis: "y",
+          handle: ".handle",
+        });
+
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="element"></div>
+    </div>
+    <p>Coordinates : { x: <span id="xPos">0</span>, y: <span id="yPos">0</span> }</p>
+    <hr>
+    <p>Liste de courses :</p>
+    <ul>
+      <li><span class="handle">☰</span> Spaghettis</li>
+      <li><span class="handle">☰</span> Crème fraîche</li>
+      <li><span class="handle">☰</span> Lardons</li>
+      <li><span class="handle">☰</span> Moutarde</li>
+      <li><span class="handle">☰</span> Emmental rapé</li>
+      <li><span class="handle">☰</span> Oeufs</li>
+      <li><span class="handle">☰</span> Poivre</li>
+    </ul>
+  </body>
+</html>
