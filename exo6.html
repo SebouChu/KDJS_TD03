@@ -4,13 +4,24 @@
     <meta charset="utf-8">
     <title>KDJS TD n°3</title>
     <style>
-      /* Du bon style */
+      input.ng-valid.ng-touched { background-color: #b2ffb2 }
+      input.ng-invalid.ng-touched { background-color: #ffb2b2 }
     </style>
     <script src="angular.min.js"></script>
   </head>
   <body>
     <div ng-app="FormApp" ng-controller="FormController">
-
+      <form name="form">
+        <p>Name: <input type="text" ng-model="name" required></p>
+        <p>Age: <input type="number" min="14" ng-model="age" required></p>
+        <p>Email: <input type="email" ng-model="email" required></p>
+        <p>Are you sure? <input type="checkbox" ng-model="accept"></p>
+        <input type="submit" value="Let's go">
+        <div ng-show="form.$submitted">
+          <p ng-show="!accept">Accept please.</p>
+          <p ng-show="accept">Well plaaaaayed.</p>
+        </div>
+      </form>
     </div>
 
     <script>
