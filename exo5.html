@@ -1,28 +1,73 @@
 <!DOCTYPE html>
 <head>
- 
+
     <meta charset="utf-8" />
- 
+
     <title>Kit de Survie JS</title>
     <meta name="description" content="">
- 
+
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 
     <style>
     	body{ font-family: 'Quicksand', sans-serif; }
 
-    	
+
 	</style>
 
     <script src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
-    		// Ecrire les scripts ici
+        var resultList = $("ul#results");
+        
+        $("form").submit(function(e) {
+          e.preventDefault();
+          var endpoint = "https://geo.api.gouv.fr/communes?";
+          var contenu = $("input#contenu").val();
+
+          switch ($("select#type").val()) {
+            case "name":
+              endpoint += `nom=${contenu}`;
+              break;
+            case "zipcode":
+              endpoint += `codePostal=${contenu}`;
+              break;
+            case "regcode":
+              endpoint += `codeDepartement=${contenu}`;
+              break;
+          }
+
+          resultList.html("");
+          $.getJSON(endpoint, function(data) {
+            data.forEach(item => {
+              var li = document.createElement("li");
+              li.innerText = item.nom;
+              resultList.append(li);
+            });
+          });
+        });
     	});
    	</script>
 </head>
 <body>
-	<!-- Code HTML -->
+  <form>
+    <p>
+      <label for="type">Type :</label>
+      <select name="type" id="type">
+        <option value="name">Nom</option>
+        <option value="zipcode">Code postal</option>
+        <option value="regcode">Code département</option>
+      </select>
+    </p>
+    <p>
+      <label for="contenu">Contenu :</label>
+      <input type="text" name="contenu" id="contenu">
+    </p>
+    <p>
+      <input type="submit" value="Rechercher">
+    </p>
+  </form>
+
+  <ul id="results"></ul>
 </body>
- 
+
 </html>
