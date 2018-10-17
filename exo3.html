@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>KDJS TD n°3</title>
+    <style>
+      /* Du bon style */
+    </style>
+    <script src="angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-app="">
+      <p>Name: <input type="text" ng-model="name"></p>
+      <p ng-bind="name"></p>
+
+      <p>Color: <input type="text" ng-model="color" style="background-color: {{ color }}"></p>
+    </div>
+  </body>
+</html>
