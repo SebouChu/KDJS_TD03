@@ -4,7 +4,11 @@
     <meta charset="utf-8">
     <title>KDJS TD n°3</title>
     <style>
-      /* Du bon style */
+      .hint {
+        font-size: 13px;
+        margin-top: 0;
+        color: gray;
+      }
     </style>
     <script src="jquery-3.2.1.min.js"></script>
     <script>
@@ -28,20 +32,33 @@
           }
         });
 
+        nameInput.addEventListener("blur", function(e) {
+          updateResults(this.value);
+        });
+
         function updateResults(inputValue) {
           resultsList.innerHTML = "";
+          if (inputValue.trim() == "") { return; }
           var results = characters.filter(character => character.toLowerCase().indexOf(inputValue.toLowerCase()) != -1);
           results.forEach(character => {
             var listItem = document.createElement('li');
             listItem.innerText = character;
             resultsList.appendChild(listItem);
           });
+          if (resultsList.children.length == 0) {
+            var noResultsItem = document.createElement('li');
+            noResultsItem.innerText = "Nope :(";
+            resultsList.appendChild(noResultsItem);
+          }
         }
       }
     </script>
   </head>
   <body>
+    <h1>HPCSE</h1>
+    <h2>Harry Potter Characters Search Engine</h2>
     <input autocomplete="off" type="text" name="name" id="name" disabled>
+    <p class="hint">Press Tab to search</p>
     <ul id="results"></ul>
   </body>
 </html>
