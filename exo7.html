@@ -8,12 +8,40 @@
     </style>
     <script src="jquery-3.2.1.min.js"></script>
     <script>
+      var characters = [];
+      var nameInput, resultsList;
       $(document).ready(function() {
-        // Du bon script
+        nameInput = document.querySelector("input#name");
+        resultsList = document.querySelector("ul#results");
+        $.getJSON("characters.json", function(data) {
+          characters = data;
+          initInput();
+        });
       });
+
+      function initInput() {
+        nameInput.removeAttribute("disabled");
+        nameInput.addEventListener("keydown", function(e) {
+          if (e.code === "Tab") {
+            e.preventDefault();
+            updateResults(this.value);
+          }
+        });
+
+        function updateResults(inputValue) {
+          resultsList.innerHTML = "";
+          var results = characters.filter(character => character.toLowerCase().indexOf(inputValue.toLowerCase()) != -1);
+          results.forEach(character => {
+            var listItem = document.createElement('li');
+            listItem.innerText = character;
+            resultsList.appendChild(listItem);
+          });
+        }
+      }
     </script>
   </head>
   <body>
-
+    <input autocomplete="off" type="text" name="name" id="name" disabled>
+    <ul id="results"></ul>
   </body>
 </html>
