@@ -42,17 +42,13 @@
         $scope.currentId = 0;
         $scope.items = [];
 
-        $scope.getCurrentId = function () {
-          return this.storage.getItem("currentId");
-        };
-
-        $scope.getUncheckedItems = function () {
-          return this.items.filter(item => !item.checked);
-        };
-
-        $scope.getCheckedItems = function () {
-          return this.items.filter(item => item.checked);
-        };
+        // First init
+        $scope.initApp = function () {
+          if (this.storage.length != 0) {
+            this.currentId = this.getStoredCurrentId();
+            this.items = this.getStoredItems();
+          }
+        }
 
         // Data: APP => STORAGE
         $scope.save = function () {
@@ -80,16 +76,21 @@
           this.save();
         }
 
-        // First init
-        $scope.initApp = function () {
-          if (this.storage.length == 0) {
-            this.storage.setItem("currentId", 0);
-            this.storage.setItem("items", "[]");
-          }
+        $scope.getStoredCurrentId = function () {
+          return parseInt(this.storage.getItem("currentId"));
+        };
 
-          this.currentId = parseInt(this.storage.getItem("currentId"));
-          this.items = JSON.parse(this.storage.getItem("items"));
-        }
+        $scope.getStoredItems = function () {
+          return JSON.parse(this.storage.getItem("items"));
+        };
+
+        $scope.getUncheckedItems = function () {
+          return this.items.filter(item => !item.checked);
+        };
+
+        $scope.getCheckedItems = function () {
+          return this.items.filter(item => item.checked);
+        };
 
         $scope.initApp();
       });
