@@ -28,6 +28,14 @@
             document.querySelector("#new-input").value = "";
         }
 
+        $scope.removeTask = function(id) {
+            const index = this.items.findIndex(item => item.id === id);
+            if (index !== -1) {
+                this.items.splice(index, 1);
+                this.saveData();
+            }
+        }
+
         $scope.initApp();
     }
 })();
