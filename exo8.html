@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>KDJS TD n°3</title>
     <style>
+      ul { list-style: none; padding: 0 }
       .checked-list { opacity: .5; }
       hr { width: 90%; max-width: 300px; margin: 10px 0 10px 10px; }
     </style>
@@ -21,79 +22,79 @@
 
       <ul class="unchecked-list">
         <li ng-repeat="item in getUncheckedItems() track by $index">
-          {{ item.id }} - {{ item.description }}
           <input type="checkbox" ng-model="item.checked" ng-change="save()">
+          - {{ item.description }}
         </li>
       </ul>
       <hr>
       <ul class="checked-list">
         <li ng-repeat="item in getCheckedItems() track by $index">
-          {{ item.id }} - {{ item.description }}
           <input type="checkbox" ng-model="item.checked" ng-change="save()">
+          - {{ item.description }}
         </li>
       </ul>
     </div>
 
     <script>
-      var app = angular.module("TodoApp", []);
+      angular.module("TodoApp", [])
+        .controller("TodoController", function($scope) {
+          $scope.storage = window.localStorage;
+          $scope.currentId = 0;
+          $scope.items = [];
 
-      app.controller("TodoController", function($scope) {
-        $scope.storage = window.localStorage;
-        $scope.currentId = 0;
-        $scope.items = [];
-
-        // First init
-        $scope.initApp = function () {
-          if (this.storage.length != 0) {
-            this.currentId = this.getStoredCurrentId();
-            this.items = this.getStoredItems();
+          // First init
+          $scope.initApp = function () {
+            if (this.storage.length != 0) {
+              this.currentId = this.getStoredCurrentId();
+              this.items = this.getStoredItems();
+            }
           }
+
+          // Data: APP => STORAGE
+          $scope.save = function () {
+            this.storage.setItem("currentId", this.currentId);
+            this.storage.setItem("items", angular.toJson(this.items));
+          }
+
+          // Add item to items array & save
+          $scope.addTask = function (description) {
+            if (description.trim() == "") { return; }
+
+            this.currentId += 1;
+            this.items.push({ id: this.currentId, description: description, checked: false });
+
+            this.save();
+            document.querySelector("#new-input").value = "";
+          }
+
+          // Check item & save
+          $scope.toggleTask = function (id) {
+            var index = this.items.findIndex(item => item.id == id);
+            if (index == -1) { return; }
+
+            this.items[index].checked = !this.items[index].checked;
+            this.save();
+          }
+
+          $scope.getStoredCurrentId = function () {
+            return parseInt(this.storage.getItem("currentId"));
+          };
+
+          $scope.getStoredItems = function () {
+            return angular.fromJson(this.storage.getItem("items"));
+          };
+
+          $scope.getUncheckedItems = function () {
+            return this.items.filter(item => !item.checked);
+          };
+
+          $scope.getCheckedItems = function () {
+            return this.items.filter(item => item.checked);
+          };
+
+          $scope.initApp();
         }
-
-        // Data: APP => STORAGE
-        $scope.save = function () {
-          this.storage.setItem("currentId", this.currentId);
-          this.storage.setItem("items", JSON.stringify(this.items));
-        }
-
-        // Add item to items array & save
-        $scope.addTask = function (description) {
-          if (description.trim() == "") { return; }
-
-          this.currentId += 1;
-          this.items.push({ id: this.currentId, description: description, checked: false });
-
-          this.save();
-          document.querySelector("#new-input").value = "";
-        }
-
-        // Check item & save
-        $scope.toggleTask = function (id) {
-          var index = this.items.findIndex(item => item.id == id);
-          if (index == -1) { return; }
-
-          this.items[index].checked = !this.items[index].checked;
-          this.save();
-        }
-
-        $scope.getStoredCurrentId = function () {
-          return parseInt(this.storage.getItem("currentId"));
-        };
-
-        $scope.getStoredItems = function () {
-          return JSON.parse(this.storage.getItem("items"));
-        };
-
-        $scope.getUncheckedItems = function () {
-          return this.items.filter(item => !item.checked);
-        };
-
-        $scope.getCheckedItems = function () {
-          return this.items.filter(item => item.checked);
-        };
-
-        $scope.initApp();
-      });
+      );
     </script>
   </body>
 </html>
