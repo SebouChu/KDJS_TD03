@@ -92,7 +92,7 @@
                 resultDiv.append(aliasesList);
             }
 
-            if (data.aliases.length != 0) {
+            if (data.playedBy.length != 0) {
                 resultDiv.append($(`<p>Played by</p>`));
                 var playedByList = $("<ul></ul>");
                 data.playedBy.forEach(actor => { playedByList.append($(`<li>${actor}</li>`)); });
