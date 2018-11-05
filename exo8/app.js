@@ -1,1 +1,3 @@
-angular.module('TodoApp', []);
+(function () {
+    angular.module('TodoApp', []);
+})();

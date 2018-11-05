@@ -21,14 +21,14 @@
       </form>
 
       <ul class="unchecked-list">
-        <li ng-repeat="item in getUncheckedItems() track by $index">
+        <li ng-repeat="item in items | filter:{checked: false}">
           <input type="checkbox" ng-model="item.checked" ng-change="saveData()">
           - {{ item.description }}
         </li>
       </ul>
       <hr>
       <ul class="checked-list">
-        <li ng-repeat="item in getCheckedItems() track by $index">
+        <li ng-repeat="item in items | filter:{checked: true}">
           <input type="checkbox" ng-model="item.checked" ng-change="saveData()">
           - {{ item.description }}
         </li>
