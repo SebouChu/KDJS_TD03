@@ -1,0 +1,4 @@
+1. Ajoute un noeud HTML <strong> en premier enfant de chaque <li>
+2. Ajoute un noeud HTML <strong> en dernier enfant de chaque <li>
+3. Ajoute un noeud HTML <strong> avant chaque <li>
+4. Ajoute un noeud HTML <strong> après chaque <li>

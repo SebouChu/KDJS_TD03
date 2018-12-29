@@ -1,0 +1,1 @@
+Au survol de chaque div, on affiche dans la console le texte de chaque paragraphe contenu dans la div survolée.
